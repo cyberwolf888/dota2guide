@@ -49,13 +49,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin-access'],
         Route::post('/edit/{id}', 'Admin\ItemController@update')->name('.update');
     });
 
-    //Member
-    Route::group(['prefix' => 'member', 'as'=>'.member'], function() {
-        Route::get('/', 'Admin\UserController@member')->name('.manage');
-        Route::get('/create', 'Admin\UserController@create_member')->name('.create');
-        Route::post('/create', 'Admin\UserController@store_member')->name('.store');
-        Route::get('/edit/{id}', 'Admin\UserController@edit_member')->name('.edit');
-        Route::post('/edit/{id}', 'Admin\UserController@update_member')->name('.update');
+    //Users
+    Route::group(['prefix' => 'user', 'middleware' => ['auth','role:admin-access'], 'as'=>'.user'], function() {
+
+        Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin-access'], 'as'=>'.admin'], function() {
+            Route::get('/', 'Admin\UserController@admin')->name('.manage');
+            Route::get('/create', 'Admin\UserController@create_admin')->name('.create');
+            Route::post('/store', 'Admin\UserController@store_admin')->name('.store');
+            Route::get('/edit/{id}', 'Admin\UserController@edit_admin')->name('.edit');
+            Route::post('/update/{id}', 'Admin\UserController@update_admin')->name('.update');
+        });
+
+        Route::group(['prefix' => 'member', 'middleware' => ['auth','role:admin-access'], 'as'=>'.member'], function() {
+            Route::get('/', 'Admin\UserController@member')->name('.manage');
+            Route::get('/create', 'Admin\UserController@create_member')->name('.create');
+            Route::post('/store', 'Admin\UserController@store_member')->name('.store');
+            Route::get('/edit/{id}', 'Admin\UserController@edit_member')->name('.edit');
+            Route::post('/update/{id}', 'Admin\UserController@update_member')->name('.update');
+        });
+    });
+
+    //Profile
+    Route::group(['prefix' => 'profile', 'as'=>'.profile'], function() {
+        Route::get('/', 'Admin\ProfileController@index')->name('.manage');
+        Route::post('/', 'Admin\ProfileController@update')->name('.update');
     });
 
 });

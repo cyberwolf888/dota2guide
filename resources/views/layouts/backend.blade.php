@@ -133,10 +133,29 @@
                             <span class="title">Items</span>
                         </a>
                     </li>
-                    <li class="nav-item @if (str_is('*.member.*', Route::currentRouteName())) active @endif ">
-                        <a href="{{ route('admin.member.manage') }}" class="nav-link ">
+                    <li class="nav-item @if (str_is('*.user.*', Route::currentRouteName())) open active @endif ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-users"></i>
+                            <span class="title">User</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item @if (str_is('*.admin.*', Route::currentRouteName())) active @endif ">
+                                <a href="{{ route('admin.user.admin.manage') }}" class="nav-link ">
+                                    <span class="title">Admin</span>
+                                </a>
+                            </li>
+                            <li class="nav-item @if (str_is('*.member.*', Route::currentRouteName())) active @endif ">
+                                <a href="{{ route('admin.user.member.manage') }}" class="nav-link ">
+                                    <span class="title">Member</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item @if (str_is('*.profile.*', Route::currentRouteName())) active @endif ">
+                        <a href="{{ route('admin.profile.manage') }}" class="nav-link ">
                             <i class="icon-rocket"></i>
-                            <span class="title">Member</span>
+                            <span class="title">Profile</span>
                         </a>
                     </li>
                 @endcan
