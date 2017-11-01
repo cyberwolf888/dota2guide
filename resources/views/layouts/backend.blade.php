@@ -71,7 +71,12 @@
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                            <img alt="" class="img-circle" src="{{ url('assets') }}/backend/layouts/layout4/img/no_ava.jpg" /> </a>
+                            @if(Auth::user()->img == "")
+                                <img alt="" class="img-circle" src="{{ url('assets') }}/backend/layouts/layout4/img/no_ava.jpg" />
+                            @else
+                                <img class="img-circle" src="{{ url('assets/profile/'.Auth::user()->img) }}" alt="" />
+                            @endif
+                        </a>
 
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
@@ -160,31 +165,25 @@
                     </li>
                 @endcan
 
-                @can('members-access')
+                @can('member-access')
                     <li class="nav-item @if (str_is('*.dashboard', Route::currentRouteName())) active @endif start ">
                         <a href="#" class="nav-link ">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item @if (str_is('*.setting.*', Route::currentRouteName())) active @endif ">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item @if (str_is('*.guide.*', Route::currentRouteName())) active @endif ">
+                        <a href="{{ route('member.guide.manage') }}" class="nav-link ">
                             <i class="icon-rocket"></i>
-                            <span class="title">Keluarga</span>
+                            <span class="title">Item Build</span>
                         </a>
                     </li>
-                    <li class="nav-item @if (str_is('*.anggota.*', Route::currentRouteName())) active @endif ">
-                        <a href="#" class="nav-link ">
-                            <i class="icon-rocket"></i>
-                            <span class="title">Anggota</span>
+                    <li class="nav-item @if (str_is('*.profile.*', Route::currentRouteName())) active @endif ">
+                        <a href="{{ route('member.profile.manage') }}" class="nav-link ">
+                            <i class="icon-user"></i>
+                            <span class="title">Profile</span>
                         </a>
                     </li>
-                        <li class="nav-item @if (str_is('*.profile.*', Route::currentRouteName())) active @endif ">
-                            <a href="#" class="nav-link ">
-                                <i class="icon-user"></i>
-                                <span class="title">Profile</span>
-                            </a>
-                        </li>
                 @endcan
             </ul>
             <!-- END SIDEBAR MENU -->

@@ -22,11 +22,11 @@
     <!-- BEGIN PAGE BREADCRUMB -->
     <ul class="page-breadcrumb breadcrumb">
         <li>
-            <a href="{{ route('admin.dashboard') }}">Home</a>
+            <a href="{{ route('member.dashboard') }}">Home</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="{{ route('admin.user.admin.manage') }}">Profile</a>
+            <a href="{{ route('member.profile.manage') }}">Profile</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
@@ -37,7 +37,7 @@
     <!-- BEGIN PAGE BASE CONTENT -->
     <div class="row">
 
-        {!! Form::open(['route' => 'admin.profile.update', 'files' => true]) !!}
+        {!! Form::open(['route' => 'member.profile.update', 'files' => true]) !!}
         <div class="col-md-6 ">
 
             <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -106,11 +106,6 @@
                         <div class="form-group form-md-line-input {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             {!! Form::password('password_confirmation',['id'=>'password_confirmation','placeholder'=>'','class'=>'form-control']) !!}
                             <label for="password_confirmation">Password Confirmation</label>
-                        </div>
-
-                        <div class="form-group form-md-line-input {{ $errors->has('isActive') ? ' has-error' : '' }}">
-                            {!! Form::select('isActive', ['1'=>'Aktif','0'=>'Tidak Aktif'], $model->isActive,['id'=>'isActive','placeholder'=>'','class'=>'form-control', 'required']) !!}
-                            <label for="isActive">Status</label>
                         </div>
 
                     </div>

@@ -78,6 +78,29 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin-access'],
 });
 
 
+//Member
+Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member-access'], 'as'=>'member'], function() {
+
+    //Dashboard
+    Route::get('/', 'Member\DashboardController@index')->name('.dashboard');
+
+    //Guide
+    Route::group(['prefix' => 'guide', 'as'=>'.guide'], function() {
+        Route::get('/', 'Member\GuideController@index')->name('.manage');
+        Route::get('/create', 'Member\GuideController@create')->name('.create');
+        Route::post('/create', 'Member\GuideController@store')->name('.store');
+        Route::get('/edit/{id}', 'Member\GuideController@edit')->name('.edit');
+        Route::post('/edit/{id}', 'Member\GuideController@update')->name('.update');
+    });
+
+    //Profile
+    Route::group(['prefix' => 'profile', 'as'=>'.profile'], function() {
+        Route::get('/', 'Member\ProfileController@index')->name('.manage');
+        Route::post('/', 'Member\ProfileController@update')->name('.update');
+    });
+});
+
+
 Route::get('/data', function () {
 
     $json = json_decode(file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=0D0E7F2E376DC6786F574E591F4CE6D1'), true);

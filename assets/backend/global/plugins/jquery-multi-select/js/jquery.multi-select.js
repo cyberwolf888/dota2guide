@@ -99,16 +99,17 @@
       var that = this,
           ms = that.$element,
           attributes = "",
-          $option = $(option);
+          $option = $(option),
+          img = "";
+
 
       for (var cpt = 0; cpt < option.attributes.length; cpt++){
         var attr = option.attributes[cpt];
-
         if(attr.name !== 'value' && attr.name !== 'disabled'){
           attributes += attr.name+'="'+attr.value+'" ';
         }
       }
-      var selectableLi = $('<li '+attributes+'><span>'+that.escapeHTML($option.text())+'</span></li>'),
+      var selectableLi = $('<li '+attributes+'><img src="'+$option.attr('data-img')+'" width="30" height="30"/> <span>'+that.escapeHTML($option.text())+'</span></li>'),
           selectedLi = selectableLi.clone(),
           value = $option.val(),
           elementId = that.sanitize(value);

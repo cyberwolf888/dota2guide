@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Member;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
-
     public function index()
     {
         $model = \Auth::user();
-        return view('admin.profile.index',[
+        return view('member.profile.index',[
             'model'=>$model
         ]);
     }
@@ -22,7 +21,6 @@ class ProfileController extends Controller
         $validator = [
             'name' => 'required|string|max:255',
             'phone' => 'required|alpha_num|max:12',
-            'isActive' => 'required|alpha_num|max:1',
             'image' => 'image|max:3500'
         ];
 
@@ -51,7 +49,6 @@ class ProfileController extends Controller
         $model->name = $request->name;
         $model->email = $request->email;
         $model->phone = $request->phone;
-        $model->isActive = $request->isActive;
         $model->save();
 
         return redirect()->route('admin.profile.manage');
