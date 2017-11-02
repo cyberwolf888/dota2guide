@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 01 Nov 2017 pada 06.39
+-- Generation Time: 02 Nov 2017 pada 19.26
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -35,6 +35,33 @@ CREATE TABLE `detail_guide` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `detail_guide`
+--
+
+INSERT INTO `detail_guide` (`id`, `guide_id`, `item_id`, `tab`, `created_at`, `updated_at`) VALUES
+(47, 1, 1, 1, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(48, 1, 2, 1, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(49, 1, 3, 1, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(50, 1, 4, 1, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(51, 1, 5, 1, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(52, 1, 6, 1, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(53, 1, 1, 2, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(54, 1, 2, 2, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(55, 1, 3, 2, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(56, 1, 4, 2, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(57, 1, 5, 2, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(58, 1, 6, 2, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(59, 1, 2, 3, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(60, 1, 3, 3, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(61, 1, 4, 3, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(62, 1, 5, 3, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(63, 1, 6, 3, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(64, 1, 7, 3, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(65, 1, 139, 4, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(66, 1, 143, 4, '2017-11-02 10:23:45', '2017-11-02 10:23:45'),
+(67, 1, 150, 4, '2017-11-02 10:23:45', '2017-11-02 10:23:45');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +78,13 @@ CREATE TABLE `guide` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `guide`
+--
+
+INSERT INTO `guide` (`id`, `user_id`, `hero_id`, `title`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'The Best Antimage', 'the best guide', 1, '2017-11-02 10:10:33', '2017-11-02 10:23:04');
 
 -- --------------------------------------------------------
 
@@ -516,7 +550,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `remember_token`, `img`, `type`, `isActive`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@mail.com', '082247464196', '$2y$10$Hoe5daRZimTtOkCngr71FewAmqp2AE6fgnekeWIsBeY7wUjuWnI/e', 'p5kXyNaRrefk0nRuOpfAh5duN3rxPBlfo5WXweLjAHq5fmOMM3A8OrN24MxW', '196e972a1a44a811310c74300c2f803f.jpg', 1, 1, '2017-10-24 22:05:58', '2017-10-31 04:43:05'),
+(1, 'Administrator', 'admin@mail.com', '082247464196', '$2y$10$Hoe5daRZimTtOkCngr71FewAmqp2AE6fgnekeWIsBeY7wUjuWnI/e', 'xN6MNCUKw5ieJLI8utX2U8MsZ3Avi6A5n6Nl5f5Atsnq8Q0m37YemVZKWfRm', '196e972a1a44a811310c74300c2f803f.jpg', 1, 1, '2017-10-24 22:05:58', '2017-10-31 04:43:05'),
 (2, 'test admin', 'admin2@mail.com', '08663736', '$2y$10$a0cNJfiL4Ajggql9M8ooEu/dOWRR9a4a5i/fURuh5CPmCnxMCi7ni', NULL, NULL, 1, 1, '2017-10-30 19:15:50', '2017-10-30 19:15:50'),
 (3, 'Dota Member', 'member@mail.com', '08784984', '$2y$10$gyRiDPlDqHTWdlGm0nXDx.Ng/pBVy5hTFR0hncRLq2kUPlFVoWV0m', 'MvdEBGvMGH1kyo44vOsgTpnxT3LfG75GbkrkxSa8VeLBARnOqTbP9P3ofGyL', '2d78e83746e08684aa28fc765691d3da.jpg', 2, 1, '2017-10-30 19:17:59', '2017-10-31 19:35:53');
 
@@ -581,12 +615,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `detail_guide`
 --
 ALTER TABLE `detail_guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `heros`
 --

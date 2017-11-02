@@ -98,7 +98,7 @@
                             @foreach($model as $row)
                                 <tr>
                                     <td> {{ $no }} </td>
-                                    <td> <img src="" class="img-circle" width="100" height="100"> </td>
+                                    <td> <img src="{{ $row->hero->img }}" class="img-circle" width="100" height="100"> </td>
                                     <td> {{ $row->title }}</td>
 
                                     <td class="center" width="130">
