@@ -43,7 +43,7 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="{{ url('/backend') }}">
+            <a href="{{ url('/') }}">
                 <img src="{{ url('assets') }}/backend/img/logo.png" alt="logo" width="170" height="50" style="margin-top: 10px;"/> </a>
             <div class="menu-toggler sidebar-toggler">
                 <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -167,7 +167,7 @@
 
                 @can('member-access')
                     <li class="nav-item @if (str_is('*.dashboard', Route::currentRouteName())) active @endif start ">
-                        <a href="#" class="nav-link ">
+                        <a href="{{ route('member.dashboard') }}" class="nav-link ">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
                         </a>

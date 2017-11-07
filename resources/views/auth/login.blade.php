@@ -1,45 +1,45 @@
-@extends('layouts.auth')
+@extends('layouts.frontend')
 
 @section('content')
-    <div class="content">
-        <!-- BEGIN LOGIN FORM -->
-        <form class="login-form" role="form" method="POST" action="{{ url('/login') }}">
-            {{ csrf_field() }}
-            <h3 class="form-title">Login to your account</h3>
-            <div class="alert alert-danger display-hide">
-                <button class="close" data-close="alert"></button>
-                <span> Enter any username and password. </span>
-            </div>
-            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">Username</label>
-                <div class="input-icon">
-                    <i class="fa fa-user"></i>
-                    <input class="form-control placeholder-no-fix" type="email" autocomplete="off" placeholder="email" name="email" value="{{ old('email') }}"/>
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                    @endif
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
-                <div class="input-icon">
-                    <i class="fa fa-lock"></i>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" />
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            <div class="form-actions">
+    <section class="content-wrap full youplay-login">
 
-                <button type="submit" class="btn green pull-right"> Login </button>
+        <!-- Banner -->
+        <div class="youplay-banner banner-top">
+            <div class="image" style="background-image: url('{{ url('assets') }}/frontend/images/banner-bg.jpg')"></div>
+
+            <div class="info">
+                <div>
+                    <div class="container align-center">
+                        <div class="youplay-form">
+                            <h1>Login</h1>
+
+                            @if ($errors->has('email'))
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Oh snap!</strong> {{ $errors->first('email') }}
+                                </div>
+                            @endif
+                            @if ($errors->has('password'))
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Oh snap!</strong> {{ $errors->first('password') }}
+                                </div>
+                            @endif
+                            <form method="POST" action="{{ url('/login') }}">
+                                {{ csrf_field() }}
+                                <div class="youplay-input">
+                                    <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                                </div>
+                                <div class="youplay-input">
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+                                <button class="btn btn-default db">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-        <!-- END LOGIN FORM -->
-    </div>
+        </div>
+        <!-- /Banner -->
+
+    </section>
 @endsection
+

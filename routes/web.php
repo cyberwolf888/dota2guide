@@ -14,6 +14,13 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/heropedia', 'HomeController@heropedia')->name('home.heropedia');
+Route::post('/heropedia/search', 'HomeController@search_hero')->name('home.heropedia.search');
+Route::get('/itempedia', 'HomeController@itempedia')->name('home.itempedia');
+Route::post('/itempedia/search', 'HomeController@search_item')->name('home.itempedia.search');
+Route::get('/hero/{id}', 'HomeController@hero_detail')->name('home.hero.detail');
+Route::get('/item/{id}', 'HomeController@item_detail')->name('home.item.detail');
+
 
 //Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin-access'], 'as'=>'admin'], function() {
@@ -98,25 +105,28 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member-access'
 
 Route::get('/data', function () {
 
-    $json = json_decode(file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=0D0E7F2E376DC6786F574E591F4CE6D1'), true);
+    //$json = json_decode(file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=0D0E7F2E376DC6786F574E591F4CE6D1'), true);
     $items = json_decode(file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetGameItems/v0001/?key=0D0E7F2E376DC6786F574E591F4CE6D1'), true);
     //return view('welcome')->with(['json'=>$json,'items'=>$items]);
-    foreach ($json['result']['heroes'] as $hero){
+    /*foreach ($json['result']['heroes'] as $hero){
         $model = new \App\Models\Heros();
         $name = str_replace('npc_dota_hero_','',$hero['name']);
         $model->name = ucwords(str_replace('_', ' ', $name));
-        $model->img = "http://cdn.dota2.com/apps/dota2/images/heroes/".str_replace('npc_dota_hero_','',$hero['name'])."_vert.jpg";
+        $model->img = "http://cdn.dota2.com/apps/dota2/images/heroes/".str_replace('npc_dota_hero_','',$hero['name'])."_lg.png";
         $model->save();
-    }
+    }*/
 
     foreach ($items['result']['items'] as $item){
         if($item['cost']>0){
-            $model = new \App\Models\Items();
-            $name = str_replace('item_','',$item['name']);
-            $model->name = ucwords(str_replace('_', ' ', $name));
-            $model->img = $item['recipe'] == 1 ? "http://cdn.dota2.com/apps/dota2/images/items/recipe_lg.png" : "http://cdn.dota2.com/apps/dota2/images/items/".$name."_lg.png";
-            $model->cost = $item['cost'];
-            $model->save();
+            if($item['recipe'] != 1){
+                $model = new \App\Models\Items();
+                $name = str_replace('item_','',$item['name']);
+                $model->name = ucwords(str_replace('_', ' ', $name));
+                $model->img = "http://cdn.dota2.com/apps/dota2/images/items/".$name."_lg.png";
+                $model->cost = $item['cost'];
+                $model->save();
+            }
+
         }
     }
 });
