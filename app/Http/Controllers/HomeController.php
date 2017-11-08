@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guide;
 use App\Models\Heros;
 use App\Models\Items;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -59,12 +61,25 @@ class HomeController extends Controller
 
     public function hero_detail($id)
     {
-        return $id;
+        $model = Heros::find($id);
+        return view('frontend.detail_hero',['model'=>$model]);
     }
 
     public function item_detail($id)
     {
         $model = Items::find($id);
         return view('frontend.detail_item',['model'=>$model]);
+    }
+
+    public function skill_detail($id)
+    {
+        $model = Skill::find($id);
+        return view('frontend.detail_skill',['model'=>$model]);
+    }
+
+    public function guide_detail($id)
+    {
+        $model = Guide::find($id);
+        return view('frontend.detail_guide',['model'=>$model]);
     }
 }

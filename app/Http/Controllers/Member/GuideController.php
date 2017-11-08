@@ -73,6 +73,9 @@ class GuideController extends Controller
             $detail->tab = 4;
             $detail->save();
         }
+        $total = \DB::select(\DB::raw('SELECT SUM(i.cost) AS total_cost FROM detail_guide AS dg JOIN items AS i ON i.id = dg.item_id WHERE dg.guide_id = '.$model->id));
+        $model->cost = $total[0]->total_cost;
+        $model->save();
 
         return redirect()->route('member.guide.manage');
     }
@@ -99,7 +102,6 @@ class GuideController extends Controller
         $model->hero_id = $request->hero_id;
         $model->title = $request->title;
         $model->description = $request->description;
-        $model->save();
 
         DetailGuide::where('guide_id',$model->id)->delete();
         foreach ($request->earlygame as $row){
@@ -133,6 +135,10 @@ class GuideController extends Controller
             $detail->tab = 4;
             $detail->save();
         }
+
+        $total = \DB::select(\DB::raw('SELECT SUM(i.cost) AS total_cost FROM detail_guide AS dg JOIN items AS i ON i.id = dg.item_id WHERE dg.guide_id = '.$model->id));
+        $model->cost = $total[0]->total_cost;
+        $model->save();
 
         return redirect()->route('member.guide.manage');
     }

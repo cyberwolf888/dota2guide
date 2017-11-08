@@ -12,4 +12,9 @@ class Guide extends Model
     {
         return $this->belongsTo('App\Models\Heros','hero_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
 }

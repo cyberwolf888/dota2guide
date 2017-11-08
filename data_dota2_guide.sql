@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 Nov 2017 pada 12.22
+-- Generation Time: 08 Nov 2017 pada 10.03
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -35,6 +35,34 @@ CREATE TABLE `detail_guide` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `detail_guide`
+--
+
+INSERT INTO `detail_guide` (`id`, `guide_id`, `item_id`, `tab`, `created_at`, `updated_at`) VALUES
+(89, 1, 11, 1, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(90, 1, 16, 1, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(91, 1, 19, 1, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(92, 1, 21, 1, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(93, 1, 55, 2, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(94, 1, 98, 2, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(95, 1, 118, 2, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(96, 1, 121, 2, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(97, 1, 124, 2, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(98, 1, 125, 2, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(99, 1, 8, 3, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(100, 1, 69, 3, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(101, 1, 76, 3, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(102, 1, 95, 3, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(103, 1, 97, 3, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(104, 1, 136, 3, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(105, 1, 148, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(106, 1, 149, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(107, 1, 150, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(108, 1, 151, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(109, 1, 152, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(110, 1, 153, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49');
+
 -- --------------------------------------------------------
 
 --
@@ -47,10 +75,19 @@ CREATE TABLE `guide` (
   `hero_id` int(11) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `description` text,
+  `cost` int(11) DEFAULT '0',
   `status` tinyint(1) DEFAULT NULL,
+  `views` int(11) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `guide`
+--
+
+INSERT INTO `guide` (`id`, `user_id`, `hero_id`, `title`, `description`, `cost`, `status`, `views`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'The Best Antimage Carry', 'guide paling ampuh yang pernah ada pada jagat raya ini.', 53185, 1, 0, '2017-11-07 21:22:54', '2017-11-08 00:37:49');
 
 -- --------------------------------------------------------
 
@@ -84,7 +121,7 @@ CREATE TABLE `heros` (
 --
 
 INSERT INTO `heros` (`id`, `name`, `img`, `strength`, `intelligence`, `agility`, `health`, `mana`, `demage_a`, `demage_b`, `armor`, `evasion`, `mov_speed`, `faction`, `primary_att`, `atk_type`, `created_at`, `updated_at`) VALUES
-(1, 'Antimage', 'http://cdn.dota2.com/apps/dota2/images/heroes/antimage_lg.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-11-07 03:08:05', '2017-11-07 03:08:05'),
+(1, 'Antimage', 'http://cdn.dota2.com/apps/dota2/images/heroes/antimage_lg.png', 54, 57, 92, 1480, 1014, 49, 53, 3, 16, 310, 1, 2, 1, '2017-11-07 03:08:05', '2017-11-07 20:31:26'),
 (2, 'Axe', 'http://cdn.dota2.com/apps/dota2/images/heroes/axe_lg.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-11-07 03:08:05', '2017-11-07 03:08:05'),
 (3, 'Bane', 'http://cdn.dota2.com/apps/dota2/images/heroes/bane_lg.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-11-07 03:08:05', '2017-11-07 03:08:05'),
 (4, 'Bloodseeker', 'http://cdn.dota2.com/apps/dota2/images/heroes/bloodseeker_lg.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-11-07 03:08:05', '2017-11-07 03:08:05'),
@@ -221,7 +258,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `img`, `cost`, `descriptions`, `created_at`, `updated_at`) VALUES
-(1, 'Blink', 'http://cdn.dota2.com/apps/dota2/images/items/blink_lg.png', 2250, NULL, '2017-11-07 03:16:39', '2017-11-07 03:16:39'),
+(1, 'Blink Dagger', 'http://cdn.dota2.com/apps/dota2/images/items/blink_lg.png', 2250, '<p><strong>Active: Blink</strong></p><p>Teleport to a target point up to 1200 units away. If damage is taken from an enemy hero, Blink Dagger cannot be used for 3 seconds.</p><p><strong>Cast Range: Global</strong></p><p><strong>Max Blink Distance: 1200</strong></p>', '2017-11-07 03:16:39', '2017-11-07 20:36:47'),
 (2, 'Blades Of Attack', 'http://cdn.dota2.com/apps/dota2/images/items/blades_of_attack_lg.png', 420, NULL, '2017-11-07 03:16:39', '2017-11-07 03:16:39'),
 (3, 'Broadsword', 'http://cdn.dota2.com/apps/dota2/images/items/broadsword_lg.png', 1200, NULL, '2017-11-07 03:16:39', '2017-11-07 03:16:39'),
 (4, 'Chainmail', 'http://cdn.dota2.com/apps/dota2/images/items/chainmail_lg.png', 550, NULL, '2017-11-07 03:16:39', '2017-11-07 03:16:39'),
@@ -402,9 +439,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `hero_id`, `role`, `created_at`, `updated_at`) VALUES
-(11, 1, 1, '2017-10-26 10:53:28', '2017-10-26 10:53:28'),
 (12, 114, 1, '2017-10-26 19:42:44', '2017-10-26 19:42:44'),
-(13, 114, 4, '2017-10-26 19:42:44', '2017-10-26 19:42:44');
+(13, 114, 4, '2017-10-26 19:42:44', '2017-10-26 19:42:44'),
+(14, 1, 1, '2017-11-07 20:31:26', '2017-11-07 20:31:26');
 
 -- --------------------------------------------------------
 
@@ -420,8 +457,8 @@ CREATE TABLE `skill` (
   `casting_method` int(1) DEFAULT NULL,
   `targetting_method` int(1) DEFAULT NULL,
   `allowed_targets` int(1) DEFAULT NULL,
-  `mana_cost` int(5) DEFAULT NULL,
-  `cooldown` float DEFAULT NULL,
+  `mana_cost` varchar(100) DEFAULT NULL,
+  `cooldown` varchar(100) DEFAULT NULL,
   `key` int(1) DEFAULT NULL,
   `descriptions` text,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -434,7 +471,10 @@ CREATE TABLE `skill` (
 
 INSERT INTO `skill` (`id`, `hero_id`, `name`, `img`, `casting_method`, `targetting_method`, `allowed_targets`, `mana_cost`, `cooldown`, `key`, `descriptions`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Mana Break', 'b499ee8db5a52b277f2e08a8f4b73837.jpg', 2, NULL, NULL, NULL, NULL, 1, '<p>Burns an oppenents mana on each attack. Mana Break deals 60% of the mana burned as demage to the target.</p><ul><li>Mana Burned per hit: 28 / 40 / 52 / 64</li><li>Burned mana as demage: 60%</li></ul>', '2017-10-26 19:16:18', '2017-10-26 19:38:30'),
-(2, 114, 'Sidang Skripsi', 'b0ac270e4274832829054c2dd1be1062.jpg', 1, 3, 1, 0, 6, 1, '<p>Skill yang menakutkan bagi mahasiswa</p><ul><li>life time -10%</li><li>tidur tidak tenang</li></ul>', '2017-10-26 19:43:58', '2017-10-26 19:43:58');
+(2, 114, 'Sidang Skripsi', 'b0ac270e4274832829054c2dd1be1062.jpg', 1, 3, 1, '0', '6', 1, '<p>Skill yang menakutkan bagi mahasiswa</p><ul><li>life time -10%</li><li>tidur tidak tenang</li></ul>', '2017-10-26 19:43:58', '2017-10-26 19:43:58'),
+(3, 1, 'Blink', '71433c89ee5812cfd791a5883a1dbc8c.jpg', 1, 1, 3, '60', '70', 2, '<p>Short distance teleportation that allows Anti-Mage to move in and out of combat.</p>', '2017-11-07 20:33:41', '2017-11-07 20:33:41'),
+(4, 1, 'Spell Shield', 'f5fe475012bd6c44e768ec61c5fe8422.jpg', 2, NULL, NULL, NULL, NULL, 3, '<p>Increases Anti-Mage''s resistance to magic damage. Resistance: {20%/30%/40%/50%}</p>', '2017-11-07 20:34:38', '2017-11-07 20:34:38'),
+(5, 1, 'Mana Void', '2f97b7eaa3b25ce5a17df4d099e9aadf.jpg', 1, 3, 1, '125/200/275', '70', 4, '<p>Deals damage to target unit based on each point of mana missing and also deals the same damage</p>', '2017-11-07 20:35:23', '2017-11-07 20:35:23');
 
 -- --------------------------------------------------------
 
@@ -475,7 +515,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `remember_token`, `img`, `type`, `isActive`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@mail.com', '082247464196', '$2y$10$Hoe5daRZimTtOkCngr71FewAmqp2AE6fgnekeWIsBeY7wUjuWnI/e', 'xN6MNCUKw5ieJLI8utX2U8MsZ3Avi6A5n6Nl5f5Atsnq8Q0m37YemVZKWfRm', '196e972a1a44a811310c74300c2f803f.jpg', 1, 1, '2017-10-24 22:05:58', '2017-10-31 04:43:05'),
+(1, 'Administrator', 'admin@mail.com', '082247464196', '$2y$10$Hoe5daRZimTtOkCngr71FewAmqp2AE6fgnekeWIsBeY7wUjuWnI/e', 'FQv7w3RGybz8fAnpoJ7qP3m84uAVQpspmgsn8GG5brZ1DziuAU2E3HjerrB6', '196e972a1a44a811310c74300c2f803f.jpg', 1, 1, '2017-10-24 22:05:58', '2017-10-31 04:43:05'),
 (2, 'test admin', 'admin2@mail.com', '08663736', '$2y$10$a0cNJfiL4Ajggql9M8ooEu/dOWRR9a4a5i/fURuh5CPmCnxMCi7ni', NULL, NULL, 1, 1, '2017-10-30 19:15:50', '2017-10-30 19:15:50'),
 (3, 'Dota Member', 'member@mail.com', '08784984', '$2y$10$gyRiDPlDqHTWdlGm0nXDx.Ng/pBVy5hTFR0hncRLq2kUPlFVoWV0m', 'MvdEBGvMGH1kyo44vOsgTpnxT3LfG75GbkrkxSa8VeLBARnOqTbP9P3ofGyL', '2d78e83746e08684aa28fc765691d3da.jpg', 2, 1, '2017-10-30 19:17:59', '2017-10-31 19:35:53');
 
@@ -540,12 +580,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `detail_guide`
 --
 ALTER TABLE `detail_guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 --
 -- AUTO_INCREMENT for table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `heros`
 --
@@ -560,12 +600,12 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `skill`
 --
 ALTER TABLE `skill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --

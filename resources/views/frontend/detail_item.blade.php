@@ -34,7 +34,7 @@
                             <img src="{{ $model->img }}" alt="">
                         </div>
                     </a>
-                    {{ $model->descriptions }}
+                    {!! $model->descriptions !!}
                 </div>
                 <!-- /Post Text -->
             </article>
