@@ -6,6 +6,7 @@ use App\Models\Guide;
 use App\Models\Heros;
 use App\Models\Items;
 use App\Models\Skill;
+use App\Models\Subscribe;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -38,7 +39,7 @@ class HomeController extends Controller
     public function heropedia()
     {
         $model = Heros::with('guide')->paginate(20);
-        return view('frontend.heropoedia',['model'=>$model]);
+        return view('frontend.heropedia',['model'=>$model]);
     }
 
     public function search_hero(Request $request)
@@ -80,6 +81,29 @@ class HomeController extends Controller
     public function guide_detail($id)
     {
         $model = Guide::find($id);
+        $model->views += 1;
+        $model->save();
         return view('frontend.detail_guide',['model'=>$model]);
+    }
+
+    public function subscribe($id)
+    {
+        $model = new Subscribe();
+        $model->user_id = \Auth::user()->id;
+        $model->guide_id = $id;
+        $model->save();
+
+        return redirect()->back();
+    }
+
+    public function unsubscribe($id)
+    {
+        Subscribe::where('guide_id',$id)->where('user_id',\Auth::user()->id)->delete();
+        return redirect()->back();
+    }
+
+    public function search()
+    {
+        return view('frontend.search');
     }
 }

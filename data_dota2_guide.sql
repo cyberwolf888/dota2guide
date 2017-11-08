@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08 Nov 2017 pada 10.03
+-- Generation Time: 08 Nov 2017 pada 18.52
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -61,7 +61,30 @@ INSERT INTO `detail_guide` (`id`, `guide_id`, `item_id`, `tab`, `created_at`, `u
 (107, 1, 150, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
 (108, 1, 151, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
 (109, 1, 152, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
-(110, 1, 153, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49');
+(110, 1, 153, 4, '2017-11-08 00:37:49', '2017-11-08 00:37:49'),
+(111, 2, 2, 1, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(112, 2, 3, 1, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(113, 2, 4, 1, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(114, 2, 5, 1, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(115, 2, 8, 1, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(116, 2, 9, 1, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(117, 2, 1, 2, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(118, 2, 4, 2, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(119, 2, 5, 2, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(120, 2, 6, 2, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(121, 2, 7, 2, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(122, 2, 10, 2, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(123, 2, 11, 3, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(124, 2, 12, 3, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(125, 2, 13, 3, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(126, 2, 15, 3, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(127, 2, 16, 3, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(128, 2, 17, 3, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(129, 2, 11, 4, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(130, 2, 12, 4, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(131, 2, 14, 4, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(132, 2, 15, 4, '2017-11-08 09:19:36', '2017-11-08 09:19:36'),
+(133, 2, 16, 4, '2017-11-08 09:19:36', '2017-11-08 09:19:36');
 
 -- --------------------------------------------------------
 
@@ -87,7 +110,8 @@ CREATE TABLE `guide` (
 --
 
 INSERT INTO `guide` (`id`, `user_id`, `hero_id`, `title`, `description`, `cost`, `status`, `views`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 'The Best Antimage Carry', 'guide paling ampuh yang pernah ada pada jagat raya ini.', 53185, 1, 0, '2017-11-07 21:22:54', '2017-11-08 00:37:49');
+(1, 3, 1, 'The Best Antimage Carry', 'guide paling ampuh yang pernah ada pada jagat raya ini.', 53185, 1, 0, '2017-11-07 21:22:54', '2017-11-08 00:37:49'),
+(2, 4, 1, 'Ultimate Hero Carry', 'The best of the best guide for antimage to kill enemy', 19410, 1, 15, '2017-11-08 09:19:36', '2017-11-08 09:51:59');
 
 -- --------------------------------------------------------
 
@@ -490,6 +514,13 @@ CREATE TABLE `subscribe` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `subscribe`
+--
+
+INSERT INTO `subscribe` (`id`, `user_id`, `guide_id`, `created_at`, `updated_at`) VALUES
+(2, 3, 2, '2017-11-08 09:51:50', '2017-11-08 09:51:50');
+
 -- --------------------------------------------------------
 
 --
@@ -517,7 +548,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `remember_token`, `img`, `type`, `isActive`, `created_at`, `updated_at`) VALUES
 (1, 'Administrator', 'admin@mail.com', '082247464196', '$2y$10$Hoe5daRZimTtOkCngr71FewAmqp2AE6fgnekeWIsBeY7wUjuWnI/e', 'FQv7w3RGybz8fAnpoJ7qP3m84uAVQpspmgsn8GG5brZ1DziuAU2E3HjerrB6', '196e972a1a44a811310c74300c2f803f.jpg', 1, 1, '2017-10-24 22:05:58', '2017-10-31 04:43:05'),
 (2, 'test admin', 'admin2@mail.com', '08663736', '$2y$10$a0cNJfiL4Ajggql9M8ooEu/dOWRR9a4a5i/fURuh5CPmCnxMCi7ni', NULL, NULL, 1, 1, '2017-10-30 19:15:50', '2017-10-30 19:15:50'),
-(3, 'Dota Member', 'member@mail.com', '08784984', '$2y$10$gyRiDPlDqHTWdlGm0nXDx.Ng/pBVy5hTFR0hncRLq2kUPlFVoWV0m', 'MvdEBGvMGH1kyo44vOsgTpnxT3LfG75GbkrkxSa8VeLBARnOqTbP9P3ofGyL', '2d78e83746e08684aa28fc765691d3da.jpg', 2, 1, '2017-10-30 19:17:59', '2017-10-31 19:35:53');
+(3, 'Dota Member', 'member@mail.com', '08784984', '$2y$10$gyRiDPlDqHTWdlGm0nXDx.Ng/pBVy5hTFR0hncRLq2kUPlFVoWV0m', 'MvdEBGvMGH1kyo44vOsgTpnxT3LfG75GbkrkxSa8VeLBARnOqTbP9P3ofGyL', '2d78e83746e08684aa28fc765691d3da.jpg', 2, 1, '2017-10-30 19:17:59', '2017-10-31 19:35:53'),
+(4, 'I Made Hendra Wijaya', 'wijaya.imd@gmail.com', '082247464196', '$2y$10$IwURF6ozPVSn6Q02.DkuMejtCihcgRJJ4t9lb7unAItPvAqqhdD8O', 'YXI6yHf5ULtMR02MuJA9SZTn06cidPuSazlHWYR0IAi0HfdLgc93vkkh15h2', NULL, 2, 0, '2017-11-08 09:17:16', '2017-11-08 09:17:16');
 
 --
 -- Indexes for dumped tables
@@ -580,12 +612,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `detail_guide`
 --
 ALTER TABLE `detail_guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 --
 -- AUTO_INCREMENT for table `guide`
 --
 ALTER TABLE `guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `heros`
 --
@@ -610,12 +642,12 @@ ALTER TABLE `skill`
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

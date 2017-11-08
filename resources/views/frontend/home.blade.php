@@ -20,7 +20,7 @@
                     <br>
                     <br>
                     <br>
-                    <a class="btn btn-lg" href="#!">SEARCH</a>
+                    <a class="btn btn-lg" href="{{ route('home.search') }}">SEARCH</a>
                 </div>
             </div>
         </div>

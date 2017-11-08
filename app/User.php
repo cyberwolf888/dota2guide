@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Subscribe;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'type', 'isActive'
     ];
 
     /**
@@ -32,5 +33,12 @@ class User extends Authenticatable
         $status = [1=>'Aktif',0=>'Tidak Aktif'];
 
         return $status[$this->isActive];
+    }
+
+    public function isSubscribe($id)
+    {
+        $check = Subscribe::where('user_id',$this->id)->where('guide_id',$id)->count();
+
+        return $check > 0 ? true : false;
     }
 }

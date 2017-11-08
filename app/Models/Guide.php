@@ -17,4 +17,14 @@ class Guide extends Model
     {
         return $this->belongsTo('App\User','user_id');
     }
+
+    public function detail()
+    {
+    	return $this->hasMany('App\Models\DetailGuide','guide_id');
+    }
+
+    public function subscribe()
+    {
+        return $this->hasMany('App\Models\Subscribe','guide_id');
+    }
 }

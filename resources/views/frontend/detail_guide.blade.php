@@ -4,6 +4,14 @@
 @endpush
 
 @push('page_css')
+<style type="text/css">
+	.item_detail{
+		margin-bottom: 5px;
+	}
+	.popover-title{
+		background-color: #080325 !important;
+	}
+</style>
 @endpush
 
 @section('content')
@@ -39,24 +47,78 @@
                 <!-- Review Rating -->
                 <div class="youplay-review-rating">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="youplay-hexagon-rating youplay-hexagon-rating-ready" data-max="10" title="9.1 out of 10" style="width: 120px; height: 120px;"><canvas width="120" height="120"></canvas><span>9.1</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <h3 class="mt-0">Good</h3>
+                        <div class="col-md-6">
+                            <h3 class="mt-0">Early Game Items</h3>
                             <ul>
-                                <li><i class="fa fa-plus-circle"></i> Incredible atmosphere</li>
-                                <li><i class="fa fa-plus-circle"></i> Fast, tactical combat</li>
-                                <li><i class="fa fa-plus-circle"></i> Multiplayer with friends</li>
-                                <li><i class="fa fa-plus-circle"></i> Creature/Boss design</li>
+                            	@foreach($model->detail as $detail)
+                            		@if($detail->tab == 1)
+                                	<li class="item_detail" 
+                                		data-toggle="popover"
+                                        data-html="true"
+                                        data-trigger="hover"
+                                        data-placement="left"
+                                        title="{{ $detail->item->name }}"
+                                        data-content="{{ $detail->item->descriptions }}">
+                                		<img src="{{ $detail->item->img }}" height="32" width="40"> {{ $detail->item->name }}
+                                	</li>
+                                	@endif
+                                @endforeach
                             </ul>
                         </div>
-                        <div class="col-md-4">
-                            <h3 class="mt-0">Bad</h3>
+                        <div class="col-md-6">
+                            <h3 class="mt-0">Core Items</h3>
                             <ul>
-                                <li><i class="fa fa-minus-circle"></i> Aimlessness in goals</li>
-                                <li><i class="fa fa-minus-circle"></i> Lack of play style choice</li>
+                                @foreach($model->detail as $detail)
+                            		@if($detail->tab == 2)
+                                	<li class="item_detail" 
+                                		data-toggle="popover"
+                                        data-html="true"
+                                        data-trigger="hover"
+                                        data-placement="left"
+                                        title="{{ $detail->item->name }}"
+                                        data-content="{{ $detail->item->descriptions }}">
+                                		<img src="{{ $detail->item->img }}" height="32" width="40"> {{ $detail->item->name }}
+                                	</li>
+                                	@endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="mt-0">Late Game Items</h3>
+                            <ul>
+                                @foreach($model->detail as $detail)
+                            		@if($detail->tab == 3)
+                                	<li class="item_detail" 
+                                		data-toggle="popover"
+                                        data-html="true"
+                                        data-trigger="hover"
+                                        data-placement="left"
+                                        title="{{ $detail->item->name }}"
+                                        data-content="{{ $detail->item->descriptions }}">
+                                		<img src="{{ $detail->item->img }}" height="32" width="40"> {{ $detail->item->name }}
+                                	</li>
+                                	@endif
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="mt-0">Extra Items</h3>
+                            <ul>
+                                @foreach($model->detail as $detail)
+                            		@if($detail->tab == 4)
+                                	<li class="item_detail" 
+                                		data-toggle="popover"
+                                        data-html="true"
+                                        data-trigger="hover"
+                                        data-placement="left"
+                                        title="{{ $detail->item->name }}"
+                                        data-content="{{ $detail->item->descriptions }}">
+                                		<img src="{{ $detail->item->img }}" height="32" width="40"> {{ $detail->item->name }}
+                                	</li>
+                                	@endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -65,7 +127,7 @@
 
                 <!-- Post Tags -->
                 <div class="tags">
-                    <i class="fa fa-tags"></i>  <a href="#">Bloodborne</a>, <a href="#">first try</a>, <a href="#">first boss problem</a>, <a href="#">newbie game</a>
+                    <i class="fa fa-tags"></i>  <a href="#">{{ $model->hero->name }}</a>, <a href="#">Item build</a>, <a href="#">Dota Guide</a>
                 </div>
                 <!-- /Post Tags -->
 
@@ -73,35 +135,26 @@
                 <div class="meta">
                     <div class="item">
                         <i class="fa fa-user meta-icon"></i>
-                        Author <a href="#!">nK</a>
+                        Author <a href="#!">{{ $model->user->name }}</a>
                     </div>
                     <div class="item">
                         <i class="fa fa-calendar meta-icon"></i>
-                        Published <a href="#!">Today</a>
+                        Published <a href="#!">{{ $model->created_at->diffForHumans() }}</a>
                     </div>
                     <div class="item">
                         <i class="fa fa-bookmark meta-icon"></i>
-                        Categories <a href="#!">First Try</a>
+                        Hero <a href="#!">{{ $model->hero->name }}</a>
                     </div>
                     <div class="item">
                         <i class="fa fa-eye meta-icon"></i>
-                        Views 384
+                        Views {{ $model->views }}
                     </div>
                     <div class="item">
-                        <a href="#"><i class="fa fa-heart"></i> 27</a>
+                        <a href="#"><i class="fa fa-heart"></i> {{ count($model->subscribe) }}</a>
                     </div>
                 </div>
                 <!-- /Post Meta -->
 
-                <!-- Post Share -->
-                <div class="btn-group social-list social-likes social-likes_visible" data-counters="no">
-                    <span class="btn btn-default social-likes__widget social-likes__widget_facebook" title="Share link on Facebook"><span class="social-likes__button social-likes__button_facebook"><span class="social-likes__icon social-likes__icon_facebook"></span></span></span>
-                    <span class="btn btn-default social-likes__widget social-likes__widget_twitter" title="Share link on Twitter"><span class="social-likes__button social-likes__button_twitter"><span class="social-likes__icon social-likes__icon_twitter"></span></span></span>
-                    <span class="btn btn-default social-likes__widget social-likes__widget_plusone" title="Share link on Google+"><span class="social-likes__button social-likes__button_plusone"><span class="social-likes__icon social-likes__icon_plusone"></span></span></span>
-                    <span class="btn btn-default social-likes__widget social-likes__widget_pinterest" title="Share image on Pinterest" data-media=""><span class="social-likes__button social-likes__button_pinterest"><span class="social-likes__icon social-likes__icon_pinterest"></span></span></span>
-                    <span class="btn btn-default social-likes__widget social-likes__widget_vkontakte" title="Share link on VK"><span class="social-likes__button social-likes__button_vkontakte"><span class="social-likes__icon social-likes__icon_vkontakte"></span></span></span>
-                </div>
-                <!-- /Post Share -->
             </article>
             <!-- /Post Info -->
 
@@ -110,7 +163,15 @@
 
         <!-- Right Side -->
         <div class="col-md-3">
+            <center>
+                @if(Auth::user()->isSubscribe($model->id))
+                    <a href="{{ route('home.unsubscribe',$model->id) }}" class="btn btn-lg">UNSUBSCRIBE</a>
+                @else
+                    <a href="{{ route('home.subscribe',$model->id) }}" class="btn btn-lg active">SUBSCRIBE</a>
+                @endif
 
+            </center>
+            <br><br>
             <!-- Side Categories -->
             <div class="side-block">
                 <h4 class="block-title">Guide</h4>
@@ -168,4 +229,7 @@
 @endpush
 
 @push('scripts')
+<script type="text/javascript">
+	$('[data-toggle="popover"]').popover();
+</script>
 @endpush

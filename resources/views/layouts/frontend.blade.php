@@ -93,7 +93,7 @@
                                 <a href="{{ route('member.guide.create') }}">Create New Guide</a>
                             </li>
                             <li>
-                                <a href="#">Find a Guide</a>
+                                <a href="{{ route('home.search') }}">Find a Guide</a>
                             </li>
                         </ul>
                     </div>
@@ -137,7 +137,7 @@
                     </div>
                 </li>
                 <li>
-                    <a class="search-toggle" href="search.html">
+                    <a class="search-toggle" href="{{ route('home.search') }}">
                         <i class="fa fa-search"></i>
                     </a>
                 </li>

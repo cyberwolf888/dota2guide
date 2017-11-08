@@ -22,6 +22,9 @@ Route::get('/hero/{id}', 'HomeController@hero_detail')->name('home.hero.detail')
 Route::get('/item/{id}', 'HomeController@item_detail')->name('home.item.detail');
 Route::get('/skill/{id}', 'HomeController@skill_detail')->name('home.skill.detail');
 Route::get('/guide/{id}', 'HomeController@guide_detail')->name('home.guide.detail');
+Route::get('/subscribe/{id}', 'HomeController@subscribe')->middleware(['auth','role:member-access'])->name('home.subscribe');
+Route::get('/unsubscribe/{id}', 'HomeController@unsubscribe')->middleware(['auth','role:member-access'])->name('home.unsubscribe');
+Route::get('/search', 'HomeController@search')->name('home.search');
 
 
 //Admin

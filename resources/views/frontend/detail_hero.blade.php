@@ -35,6 +35,7 @@
                     </a>
                 </div>
                 <!-- /Post Text -->
+                @if($model->primary_att != "")
                 <table class="table table-bordered table-hover">
                     <tr>
                         <td>FACTION</td>
@@ -92,6 +93,7 @@
                         <td>{{ $model->mov_speed }}</td>
                     </tr>
                 </table>
+                @endif
             </article>
             <!-- /Post Info -->
 
