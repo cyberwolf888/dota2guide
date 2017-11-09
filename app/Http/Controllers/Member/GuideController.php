@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Models\DetailGuide;
 use App\Models\Guide;
+use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -139,6 +140,26 @@ class GuideController extends Controller
         $total = \DB::select(\DB::raw('SELECT SUM(i.cost) AS total_cost FROM detail_guide AS dg JOIN items AS i ON i.id = dg.item_id WHERE dg.guide_id = '.$model->id));
         $model->cost = $total[0]->total_cost;
         $model->save();
+
+
+        //Send notif
+        foreach (Subscribe::with('user')->where('guide_id',$model->id)->get() as $row){
+            $pesan = 'Dear '.$row->user->name.'<br>';
+            $pesan.= 'Item Build <b>'.$model->title.'</b> telah di update oleh author silakan klik tombol dibawah untuk melihat detail guide.';
+            $data = array(
+                'pesan'=>$pesan,
+                'link'=>route('home.guide.detail',$model->id),
+                'to'=>'wijaya.imd@gmail.com'//$row->user->email
+            );
+
+            \Mail::send('email.update', $data, function ($message) use ($data){
+
+                $message->from(env('MAIL_USERNAME'), 'Data2 Item Guide');
+
+                $message->to($data['to'])->subject('Guide Update');
+
+            });
+        }
 
         return redirect()->route('member.guide.manage');
     }

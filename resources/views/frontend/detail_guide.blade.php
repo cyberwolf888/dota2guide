@@ -164,12 +164,15 @@
         <!-- Right Side -->
         <div class="col-md-3">
             <center>
-                @if(Auth::user()->isSubscribe($model->id))
-                    <a href="{{ route('home.unsubscribe',$model->id) }}" class="btn btn-lg">UNSUBSCRIBE</a>
+                @if(Auth::check())
+                    @if(Auth::user()->isSubscribe($model->id))
+                        <a href="{{ route('home.unsubscribe',$model->id) }}" class="btn btn-lg">UNSUBSCRIBE</a>
+                    @else
+                        <a href="{{ route('home.subscribe',$model->id) }}" class="btn btn-lg active">SUBSCRIBE</a>
+                    @endif
                 @else
                     <a href="{{ route('home.subscribe',$model->id) }}" class="btn btn-lg active">SUBSCRIBE</a>
                 @endif
-
             </center>
             <br><br>
             <!-- Side Categories -->

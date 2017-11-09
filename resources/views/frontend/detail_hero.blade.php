@@ -112,7 +112,8 @@
 
                 <li class="body">
                     @foreach($model->guide as $guide)
-                    <ul data-views="{{ $guide->views }}" data-subscriber="1" data-title="{{ $guide->title }}" data-created="{{ strtotime($guide->created_at) }}">
+                        <?php $subscribe = count($guide->subscribe); ?>
+                    <ul data-views="{{ $guide->views }}" data-subscriber="{{ $subscribe }}" data-title="{{ $guide->title }}" data-created="{{ strtotime($guide->created_at) }}">
                         <li class="cell-icon">
                             <i class="fa fa-folder-open-o"></i>
                         </li>
@@ -126,7 +127,7 @@
                             </div>
                         </li>
                         <li class="cell-topic-count">{{ $guide->views }}</li>
-                        <li class="cell-reply-count">21</li>
+                        <li class="cell-reply-count">{{ $subscribe }}</li>
                         <li class="cell-freshness">
                             <a href="#">{{ $guide->created_at->diffForHumans() }}</a>
                         </li>
