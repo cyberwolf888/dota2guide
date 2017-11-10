@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 09 Nov 2017 pada 08.47
+-- Generation Time: 10 Nov 2017 pada 19.22
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -85,6 +85,26 @@ INSERT INTO `detail_guide` (`id`, `guide_id`, `item_id`, `tab`, `created_at`, `u
 (154, 2, 14, 4, '2017-11-08 23:42:28', '2017-11-08 23:42:28'),
 (155, 2, 15, 4, '2017-11-08 23:42:28', '2017-11-08 23:42:28'),
 (156, 2, 16, 4, '2017-11-08 23:42:28', '2017-11-08 23:42:28');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `guest_subscribe`
+--
+
+CREATE TABLE `guest_subscribe` (
+  `id` int(11) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `guest_subscribe`
+--
+
+INSERT INTO `guest_subscribe` (`id`, `email`, `created_at`, `updated_at`) VALUES
+(1, 'wijaya.imd@gmail.com', '2017-11-10 09:56:03', '2017-11-10 09:56:03');
 
 -- --------------------------------------------------------
 
@@ -562,6 +582,12 @@ ALTER TABLE `detail_guide`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `guest_subscribe`
+--
+ALTER TABLE `guest_subscribe`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `guide`
 --
 ALTER TABLE `guide`
@@ -613,6 +639,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `detail_guide`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+--
+-- AUTO_INCREMENT for table `guest_subscribe`
+--
+ALTER TABLE `guest_subscribe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `guide`
 --

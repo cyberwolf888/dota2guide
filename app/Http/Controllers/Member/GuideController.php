@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Models\DetailGuide;
+use App\Models\GuestSubscribe;
 use App\Models\Guide;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
@@ -78,6 +79,25 @@ class GuideController extends Controller
         $model->cost = $total[0]->total_cost;
         $model->save();
 
+        //Send notif
+        foreach (GuestSubscribe::all() as $row){
+            $pesan = 'Dear Users<br>';
+            $pesan.= 'New Item Build has been made by <b>'.$model->user->name.'</b> the guide title is <b>'.$model->title.'</b> Click button bellow to see more detail about this item build.';
+            $data = array(
+                'pesan'=>$pesan,
+                'link'=>route('home.guide.detail',$model->id),
+                'to'=> $row->email
+            );
+
+            \Mail::send('email.create', $data, function ($message) use ($data){
+
+                $message->from(env('MAIL_USERNAME'), 'Dota2 Item Guide');
+
+                $message->to($data['to'])->subject('New Guide');
+
+            });
+        }
+
         return redirect()->route('member.guide.manage');
     }
 
@@ -145,16 +165,16 @@ class GuideController extends Controller
         //Send notif
         foreach (Subscribe::with('user')->where('guide_id',$model->id)->get() as $row){
             $pesan = 'Dear '.$row->user->name.'<br>';
-            $pesan.= 'Item Build <b>'.$model->title.'</b> telah di update oleh author silakan klik tombol dibawah untuk melihat detail guide.';
+            $pesan.= 'Item Build <b>'.$model->title.'</b> has been update by the Author. Click button bellow to see more detail about this build update.';
             $data = array(
                 'pesan'=>$pesan,
                 'link'=>route('home.guide.detail',$model->id),
-                'to'=>'wijaya.imd@gmail.com'//$row->user->email
+                'to'=>$row->user->email
             );
 
             \Mail::send('email.update', $data, function ($message) use ($data){
 
-                $message->from(env('MAIL_USERNAME'), 'Data2 Item Guide');
+                $message->from(env('MAIL_USERNAME'), 'Dota2 Item Guide');
 
                 $message->to($data['to'])->subject('Guide Update');
 

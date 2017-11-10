@@ -188,6 +188,18 @@
                             </a>
                         </div>
                     </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="side-block">
+                            <p>Subscribe to get lastest News:</p>
+                            <form action="{{ route('home.guest_subscribe') }}" method="post">
+                                {{ csrf_field() }}
+                                <div class="youplay-input">
+                                    <input type="text" name="subscribe_email" placeholder="enter your email address">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /Social Buttons -->
@@ -217,7 +229,43 @@
     </form>
 </div>
 <!-- /Search Block -->
+@if ($errors->has('subscribe_email'))
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Subscribe Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>{{ $errors->first('subscribe_email') }}</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnClose">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 
+@if(session('success') !== null)
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Subscribe Success</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 style="color: green;">{{ session('success') }}</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnClose">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 <!-- jQuery -->
 <script type="text/javascript" src="{{ url('assets') }}/frontend/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -269,6 +317,16 @@
             }
         });
     })();
+    @if ($errors->has('subscribe_email'))
+    $(document).ready(function () {
+        $("#errorModal").modal('show');
+    });
+    @endif
+    @if(session('success') !== null)
+    $(document).ready(function () {
+        $("#successModal").modal('show');
+    });
+    @endif
 </script>
 </body>
 </html>

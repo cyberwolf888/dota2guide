@@ -26,6 +26,7 @@ Route::get('/subscribe/{id}', 'HomeController@subscribe')->middleware(['auth','r
 Route::get('/unsubscribe/{id}', 'HomeController@unsubscribe')->middleware(['auth','role:member-access'])->name('home.unsubscribe');
 Route::get('/search', 'HomeController@search')->name('home.search');
 Route::post('/search', 'HomeController@search_result')->name('home.search.result');
+Route::post('/guest_subscribe', 'HomeController@guest_subscribe')->name('home.guest_subscribe');
 
 
 //Admin

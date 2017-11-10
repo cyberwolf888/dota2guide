@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GuestSubscribe;
 use App\Models\Guide;
 use App\Models\Heros;
 use App\Models\Items;
@@ -127,5 +128,18 @@ class HomeController extends Controller
         }
 
         return view('frontend.search_result',['model'=>$guides,'req'=>$request->all()]);
+    }
+
+    public function guest_subscribe(Request $request)
+    {
+        $this->validate($request, [
+            'subscribe_email' => 'required|email|max:100|unique:guest_subscribe,email'
+        ]);
+
+        $model = new GuestSubscribe();
+        $model->email = $request->subscribe_email;
+        $model->save();
+
+        return redirect()->back()->with('success','Thanks for subscribe! :)');
     }
 }
