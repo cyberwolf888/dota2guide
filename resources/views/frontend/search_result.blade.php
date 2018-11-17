@@ -40,7 +40,7 @@
                     </label>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-3">
                     <p>Total Subscriber:</p>
                     <label class="youplay-select">
@@ -65,7 +65,7 @@
                         {!! Form::select('total_views', [9=>'Normal',18=>'Important',25=>'Very Important'], $req['total_views'], ['id'=>'total_views']) !!}
                     </label>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">

@@ -115,17 +115,23 @@ class HomeController extends Controller
         $model->where('guide.hero_id',$request->hero);
         $model->groupBy('guide.id');
         $guides = $model->get();
+
+
+        //hitung score dengan SMART
         foreach($guides as $row){
             $row->total_subscribe = count($row->subscribe);
-            $row->bobot_total_subscribe = $row->getBobotSubscribe($row->total_subscribe);
-            $row->bobot_total_item = $row->getBobotItem($row->total_item);
-            $row->bobot_total_cost = $row->getBobotCost($row->cost);
-            $row->bobot_total_views = $row->getBobotViews($row->views);
-            $row->total_score = $row->getTotalScore($request->total_subscriber,
-                                                    $request->total_item,
-                                                    $request->total_cost,
-                                                    $request->total_views);
+
+//            $row->bobot_total_subscribe = $row->getBobotSubscribe($row->total_subscribe);
+//            $row->bobot_total_item = $row->getBobotItem($row->total_item);
+//            $row->bobot_total_cost = $row->getBobotCost($row->cost);
+//            $row->bobot_total_views = $row->getBobotViews($row->views);
+
+            $row->total_score = $row->getTotalScore($row->total_subscribe,
+	            $row->total_item,
+	            $row->cost,
+	            $row->views);
         }
+
 
         return view('frontend.search_result',['model'=>$guides,'req'=>$request->all()]);
     }
